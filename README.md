@@ -272,6 +272,8 @@ bartlett.test(Length ~ Group, data = dataoneway)
 
 ![4b](https://user-images.githubusercontent.com/64957624/170877622-efc5728f-e53a-4de0-a085-1acb8f00c21c.png)
 
+Dari hasil uji fungsi `bartlett.test()` didapatkan p-value sebesar 0.8054 yang lebih dari nilai 𝛼 = 0.05 sehingga asumsi kesamaan varians terpenuhi.
+
 </br>
 
 ### Poin C
@@ -286,18 +288,20 @@ anova(model1)
 
 ![4c](https://user-images.githubusercontent.com/64957624/170877742-5c0f86d2-2707-46be-bedf-a0905bbcbaa1.png)
 
+
 </br>
 
 ### Poin D
 >Dari hasil poin C, berapakah nilai p? Apa yang dapat Anda simpulkan dari H0?
 
+Berdasarkan hasil yang didapatkan pada poin sebelumnya, pada taraf uji 5% didapatkan nilai p-value sebesar 0.0013. Maka, terdapat perbedaan panjang kucing yang signifikan berdasarkan grupnya.
 
 </br>
 
 ### Poin E
 >Verifikasilah jawaban model 1 dengan Post-hoc test Tukey HSD, dari nilai p yang didapatkan apakah satu jenis kucing lebih panjang dari yang lain? Jelaskan.
 
-
+Untuk verifikasi jawaban model 1 sebelumnya, digunakan sebuah fungsi yaitu fungsi `TukeyHSD()` dengan parameter model 1 dari AOV sebelumnya.
 
 ```R
 TukeyHSD(aov(model1))
@@ -305,8 +309,9 @@ TukeyHSD(aov(model1))
 
 ![4e](https://user-images.githubusercontent.com/64957624/170877879-582c1df7-377f-48e4-baff-c4917c02ed51.png)
 
-</br>
+Dari hasil uji Tukey, dapat dilihat kombinasi dari kelompok mana yang secara signifikan berbeda. Jika menggunakan 𝛼 = 5%, **perbedaan panjang kucing yang signifikan adalah grup 2 (Kucing Hitam) terhadap grup 1 (Kucing Oren) dan grup 3 (Kucing Putih)**.
 
+</br>
 
 ### Poin F
 >Visualisasikan data dengan ggplot2
