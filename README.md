@@ -107,12 +107,95 @@ Hal tersebut berarti,
 ### Poin C
 >Buatlah kesimpulan berdasarkan P-Value yang dihasilkan!
 
-Berdasarkan hasil dari poin sebelumnya, 
+Berdasarkan hasil dari poin sebelumnya, kesimpulan yang didapat adalah bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun
 
 </br>
 
 ## Soal 3
+Diketahui perusahaan memiliki seorang data analyst ingin memecahkan permasalahan pengambilan keputusan dalam perusahaan tersebut. Selanjutnya didapatkanlah data berikut dari perusahaan saham tersebut.
 
+| Nama Kota/Atribut   | Bandung        | Bali       |
+|-------------|----------|----------|
+| Jumlah Saham              | 19 | 27 |
+| Sampel Mean               | 3.64 | 2.79 |
+| Sampel Standar Deviasi    | 1.67 | 1.32 |
+
+Dari data diatas berilah keputusan serta kesimpulan yang didapatkan dari hasil
+diatas. Asumsikan nilai variancenya sama, apakah ada perbedaan pada
+rata-ratanya (α= 0.05)? Buatlah:
+
+### Poin A
+>H0 dan H1
+
+Berdasarkan deskripsi dan data yang terlampir, maka dapat disusun hipotesis H0 dan H1 sebagai berikut.
+- H0 ← μ1 = μ2 (rata-rata saham di Bandung sama dengan di Bali)
+- H1 ← μ1 ≠ μ2 (rata-rata saham di Bandung tidak sama dengan di Bali)
+
+</br>
+
+### Poin B
+>Hitung sampel statistik
+
+Solusi dilakukan dengan menggunakan fungsi `tsum.test()` dengan parameter sesuai dengan data pada tabel terlampir. Fungsi tersebut menghasilkan nilai dari sampel statistik.
+
+```R
+tsum.test(mean.x=3.64, s.x = 1.67, n.x = 19, 
+          mean.y =2.79 , s.y = 1.32, n.y = 27, 
+          alternative = "greater", var.equal = TRUE)
+```
+
+![3b](https://user-images.githubusercontent.com/64957624/170874938-94512ecc-99e2-41e2-9f9e-9175000cc61d.png)
+
+</br>
+
+### Poin C
+>Lakukan uji statistik (df =2)
+
+Digunakan sebuah package library Mosaic untuk membuat solusi permasalahannya.
+
+```R
+install.packages("mosaic")
+library(mosaic)
+```
+
+Selanjutnya, digunakan fungsi `plotDist()` untuk mendapatkan gambaran atau visualisasi dari statistik dengan derajat bebas sebesar 2.
+
+```R
+plotDist(dist = 't', df = 2, col = "blue")
+```
+
+![3c](https://user-images.githubusercontent.com/64957624/170875180-ac54354b-7b25-44f9-a6d8-bfe1f22cd1f5.png)
+
+</br>
+
+### Poin D
+>Nilai Kritikal
+
+Digunakan fungsi `qchisq()` dengan nilai `df` sesuai dengan yang telah terlampir untuk mendapatkan nilai kritikal.
+
+```R
+qchisq(p = 0.05, df = 2, lower.tail = FALSE)
+```
+
+![3d](https://user-images.githubusercontent.com/64957624/170875348-aed39047-c1f4-4bd4-b4b8-9b65ec999e8d.png)
+
+</br>
+
+### Poin E
+>Keputusan
+
+Teori keputusan adalah teori formal pengambilan keputusan di bawah ketidakpastian. Aksinya adalah `({a}\_{a∈A})` dengan kemungkinan konsekuensinya adalah `({c}_{c∈C})` (tergantung pada keadaan dan tindakan).
+
+Maka keputusan dapat diperoleh dengan fungsi `t.test`
+
+</br>
+
+### Poin F
+>Kesimpulan
+
+Kesimpulan yang didapatkan yaitu perbedaan rata-rata yang terjadi tidak ada jika dilihat dari uji statistik.
+
+Namun, akan ada (meski tidak signifikan) jika dipengaruhi oleh nilai kritikal.
 
 </br>
 
