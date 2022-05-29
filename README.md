@@ -335,6 +335,8 @@ Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui p
 ### Poin A
 >Buatlah plot sederhana untuk visualisasi data
 
+*Pertama*, digunakan beberapa library sebagai berikut.
+
 ```R
 install.packages("multcompView")
 library(readr)
@@ -343,6 +345,7 @@ library(multcompView)
 library(dplyr)
 ```
 
+*Kedua*, memasukkan dan membaca dataset yang telah disediakan.
 
 ```R
 GTL <- read_csv("data_soal_5.csv")
@@ -351,11 +354,15 @@ head(GTL)
 
 ![5aa](https://user-images.githubusercontent.com/64957624/170877976-eaac5491-e4b5-4062-be1e-9dc1b3631d45.png)
 
+*Ketiga*, melakukan observasi pada dataset.
+
 ```R
 str(GTL)
 ```
 
 ![5ab](https://user-images.githubusercontent.com/64957624/170878012-15dc056c-343e-4ff0-9af1-64fed63f0024.png)
+
+*Keempat*, melakukan viasualisasi dengan menggunakan simple plot dengan fungsi `qplot()` sebagai berikut.
 
 ```R
 qplot(x = Temp, y = Light, geom = "point", data = GTL) + facet_grid(.~Glass, labeller = label_both)
@@ -368,6 +375,8 @@ qplot(x = Temp, y = Light, geom = "point", data = GTL) + facet_grid(.~Glass, lab
 ### Poin B
 >Lakukan uji ANOVA dua arah
 
+*Pertama*, membuat variabel as factor sebagai ANOVA.
+
 ```R
 GTL$Glass <- as.factor(GTL$Glass)
 GTL$Temp_Factor <- as.factor(GTL$Temp)
@@ -376,6 +385,8 @@ str(GTL)
 
 ![5ba](https://user-images.githubusercontent.com/64957624/170878099-b8777847-dd91-4454-9ff0-08c8de4be64f.png)
 
+*Kedua*, melakukan analisis of variance (AoV) dengan fungsi `summary(aov())` sebagai berikut.
+
 ```R
 anova <- aov(Light ~ Glass*Temp_Factor, data = GTL)
 summary(anova)
@@ -383,12 +394,12 @@ summary(anova)
 
 ![5bb](https://user-images.githubusercontent.com/64957624/170878125-c178eb3e-04b3-40ff-8b62-5b95674dfd8f.png)
 
-
-
 </br>
 
 ### Poin C
 >Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi)
+
+Sebagai solusinya, digunakan fungsi `group_by()` yang selanjutnya digunakan untuk melakukan data summary dengan fungsi `summarise()` sesuai mean dan standar deviasi yang berlaku sebagai berikut.
 
 ```R
 data_summary <- group_by(GTL, Glass, Temp) %>%
@@ -404,6 +415,8 @@ print(data_summary)
 ### Poin D
 >Lakukan uji Tukey
 
+Pengujian Tukey menggunakan fungsi `TukeyHSD()` sebagai berikut.
+
 ```R
 tukey <- TukeyHSD(anova)
 print(tukey)
@@ -416,8 +429,9 @@ print(tukey)
 </br>
 
 ### Poin E
-Buatlah plot sederhana untuk visualisasi data
 >Gunakan compact letter display untuk menunjukkan perbedaan signifikan antara uji Anova dan uji Tukey
+
+*Pertama*, membuat compact letter display dengan fungsi `multcompLetterS4()` sebagai berikut.
 
 ```R
 tukey.cld <- multcompLetters4(anova, tukey)
@@ -425,6 +439,8 @@ print(tukey.cld)
 ```
 
 ![5ea](https://user-images.githubusercontent.com/64957624/170878296-3c210e50-74ac-4440-a7bf-c65357d884fd.png)
+
+*Kedua*, menambahkan compact letter display tersebut ke tabel dengan mean dan standar deviasi yang telah dibuat sebelumnya.
 
 ```R
 cld <- as.data.frame.list(tukey.cld$`Glass:Temp_Factor`)
@@ -435,3 +451,5 @@ print(data_summary)
 ![5eb](https://user-images.githubusercontent.com/64957624/170878313-838a1d73-743a-4f29-a168-628e14ebf188.png)
 
 </br>
+
+## Terima Kasih Probstat!
