@@ -107,7 +107,7 @@ Hal tersebut berarti,
 ### Poin C
 >Buatlah kesimpulan berdasarkan P-Value yang dihasilkan!
 
-Berdasarkan hasil dari poin sebelumnya, kesimpulan yang didapat adalah bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun
+Karena nilai probabilitas tersebut lebih kecil dibandingkan tingkat signifikansi 𝛼 = 0.05, maka **hipotesis nol diterima dan hipotesis alternatif ditolak.** Sehingga, kesimpulan yang didapatkan yaitu bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun.
 
 </br>
 
