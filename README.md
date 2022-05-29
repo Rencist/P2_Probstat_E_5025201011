@@ -331,10 +331,21 @@ Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui p
 >Buatlah plot sederhana untuk visualisasi data
 
 
+![5aa](https://user-images.githubusercontent.com/64957624/170877976-eaac5491-e4b5-4062-be1e-9dc1b3631d45.png)
+
+![5ab](https://user-images.githubusercontent.com/64957624/170878012-15dc056c-343e-4ff0-9af1-64fed63f0024.png)
+
+![5ac](https://user-images.githubusercontent.com/64957624/170878035-dcf7884a-d6aa-4715-960e-71505362bb3b.png)
+
 </br>
 
 ### Poin B
 >Lakukan uji ANOVA dua arah
+
+![5ba](https://user-images.githubusercontent.com/64957624/170878099-b8777847-dd91-4454-9ff0-08c8de4be64f.png)
+
+![5bb](https://user-images.githubusercontent.com/64957624/170878125-c178eb3e-04b3-40ff-8b62-5b95674dfd8f.png)
+
 
 
 </br>
@@ -342,17 +353,25 @@ Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui p
 ### Poin C
 >Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi)
 
-
+![5c](https://user-images.githubusercontent.com/64957624/170878143-acdb24f5-fc7b-4e25-ba60-0e915f7f3612.png)
 
 </br>
 
 ### Poin D
 >Lakukan uji Tukey
 
+![5da](https://user-images.githubusercontent.com/64957624/170878200-7053be86-1ae8-4743-a908-204d63a34635.png)
+
+![5db](https://user-images.githubusercontent.com/64957624/170878210-18182cfa-69e8-4633-ba58-512fb93b46f6.png)
+
 </br>
 
 ### Poin E
 Buatlah plot sederhana untuk visualisasi data
 >Gunakan compact letter display untuk menunjukkan perbedaan signifikan antara uji Anova dan uji Tukey
+
+![5ea](https://user-images.githubusercontent.com/64957624/170878296-3c210e50-74ac-4440-a7bf-c65357d884fd.png)
+
+![5eb](https://user-images.githubusercontent.com/64957624/170878313-838a1d73-743a-4f29-a168-628e14ebf188.png)
 
 </br>
