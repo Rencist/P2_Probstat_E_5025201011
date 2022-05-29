@@ -100,14 +100,16 @@ tsum.test(mean.x = 23500, s.x = 3900, n.x = 100)
 
 ![2b](https://user-images.githubusercontent.com/64957624/170874039-90e7a435-fe58-42f8-820c-28981119fb07.png)
 
-Hal tersebut berarti, 
+Hal tersebut berarti dengan interval kepercayaan 95%, rata-rata jarak tempuh mobil per tahun berada di antara 22.726,16 km dan 24.273,84 km. 
+
+Dengan interval kepercayaan 95% dan dari 100 responden, dapat dibuktikan bahwa rata-rata jarak tempuh mobil per thn lebih dari 20.000 km karena nilai p-value kurang dari tingkat signifikansi 𝛼 = 0.05.
 
 </br>
 
 ### Poin C
 >Buatlah kesimpulan berdasarkan P-Value yang dihasilkan!
 
-Karena nilai probabilitas tersebut lebih kecil dibandingkan tingkat signifikansi 𝛼 = 0.05, maka **hipotesis nol diterima dan hipotesis alternatif ditolak.** Sehingga, kesimpulan yang didapatkan yaitu bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun.
+Karena nilai probabilitas tersebut lebih kecil dibandingkan tingkat signifikansi 𝛼 = 0.05, maka **hipotesis nol ditolak dan hipotesis alternatif diterima.** Sehingga, kesimpulan yang didapatkan yaitu bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun.
 
 </br>
 
@@ -200,9 +202,73 @@ Namun, akan ada (meski tidak signifikan) jika dipengaruhi oleh nilai kritikal.
 </br>
 
 ## Soal 4
+Seorang Peneliti sedang meneliti spesies dari kucing di ITS. Dalam penelitiannya ia mengumpulkan data tiga spesies kucing yaitu kucing oren, kucing hitam dan kucing putih dengan panjangnya masing-masing.
+
+Jika diketahui dataset pada **https://intip.in/datasetprobstat1** dan H0 adalah tidak ada perbedaan panjang antara ketiga spesies atau rata-rata panjangnya sama, maka kerjakan atau carilah:
+
+### Poin A
+>Buatlah masing masing jenis spesies menjadi 3 subjek "Grup" (grup 1, grup 2, dan grup 3). Lalu Gambarkan plot kuantil normal untuk setiap kelompok dan lihat apakah ada outlier utama dalam homogenitas varians.
+
+</br>
+
+### Poin B
+>Carilah atau periksalah homogeneity of variances-nya. Berapa nilai p yang didapatkan? Apa hipotesis dan kesimpulan yang dapat diambil?
+
+
+</br>
+
+### Poin C
+>Untuk uji ANOVA (satu arah), buatlah model linier dengan panjang versus grup dan beri nama model tersebut model 1.
+
+
+</br>
+
+### Poin D
+>Dari hasil poin C, berapakah nilai p? Apa yang dapat Anda simpulkan dari H0?
+
+</br>
+
+### Poin E
+>Verifikasilah jawaban model 1 dengan Post-hoc test Tukey HSD, dari nilai p yang didapatkan apakah satu jenis kucing lebih panjang dari yang lain? Jelaskan.
+
+
+</br>
+
+
+### Poin F
+>Visualisasikan data dengan ggplot2
+
+</br>
+
+## Soal 5
+Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui pengaruh suhu operasi (100˚C, 125˚C, dan 150˚C) dan tiga jenis kaca pelat muka (A, B dan C) pada keluaran cahaya tabung osiloskop. Percobaan dilakukan sebanyak 27 kali dan didapatkan [**data hasil eksperimen berikut**](https://drive.google.com/file/d/1aLUOdw_LVJq6VQrQEkuQhZ8FW43FemTJ/view). Dengan data tersebut:
+
+### Poin A
+>Buatlah plot sederhana untuk visualisasi data
+
+
+</br>
+
+### Poin B
+>Lakukan uji ANOVA dua arah
+
+
+</br>
+
+### Poin C
+>Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi)
 
 
 
 </br>
 
-## Soal 5
+### Poin D
+>Lakukan uji Tukey
+
+</br>
+
+### Poin E
+Buatlah plot sederhana untuk visualisasi data
+>Gunakan compact letter display untuk menunjukkan perbedaan signifikan antara uji Anova dan uji Tukey
+
+</br>
