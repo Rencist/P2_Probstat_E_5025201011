@@ -207,24 +207,90 @@ Seorang Peneliti sedang meneliti spesies dari kucing di ITS. Dalam penelitiannya
 Jika diketahui dataset pada **https://intip.in/datasetprobstat1** dan H0 adalah tidak ada perbedaan panjang antara ketiga spesies atau rata-rata panjangnya sama, maka kerjakan atau carilah:
 
 ### Poin A
->Buatlah masing masing jenis spesies menjadi 3 subjek "Grup" (grup 1, grup 2, dan grup 3). Lalu Gambarkan plot kuantil normal untuk setiap kelompok dan lihat apakah ada outlier utama dalam homogenitas varians.
+>Buatlah masing masing jenis spesies menjadi 3 subjek "Grup" (grup 1, grup 2, dan grup 3). Lalu gambarkan plot kuantil normal untuk setiap kelompok dan lihat apakah ada outlier utama dalam homogenitas varians.
+
+*Pertama*, memasukkan data dari dataset yang disediakan.
+
+```R
+dataoneway <- read.table("data_soal_4.txt", h = T)
+attach(dataoneway)
+names(dataoneway)
+```
+
+*Kedua*, melakukan grouping sesuai dengan label yang telah ditentukan sekaligus melakukan pengecekan value dalam grup yang dihasilkan.
+
+```R
+dataoneway$Group <- as.factor(dataoneway$Group)
+dataoneway$Group = factor(dataoneway$Group, labels = c("Kucing Oren", "Kucing Hitam", "Kucing Putih"))
+
+class(dataoneway$Group)
+```
+
+![4a](https://user-images.githubusercontent.com/64957624/170876621-adbbe23b-8282-4b73-b250-0b2549d31da5.png)
+
+*Ketiga*, membagi tiap valuer menjadi 3 bagian sesuai dengan label grup yang telah dibuat.
+
+```R
+Group1 <- subset(dataoneway, Group == "Kucing Oren")
+Group2 <- subset(dataoneway, Group == "Kucing Hitam")
+Group3 <- subset(dataoneway, Group == "Kucing Putih")
+```
+
+*Keempat*, menggambar plot kuantil normal untuk setiap grup untuk melihat distribusi data dan outlier utama dalam homogenitas varians pada masing-masing grup.
+
+```R
+qqnorm(Group1$Length)
+qqline(Group1$Length)
+```
+
+![4aa](https://user-images.githubusercontent.com/64957624/170876859-83e10e7b-54fd-47d4-807c-c2955967235a.png)
+
+```R
+qqnorm(Group2$Length)
+qqline(Group2$Length)
+```
+
+![4ab](https://user-images.githubusercontent.com/64957624/170876874-b58ec0b6-9eab-4bae-a387-5c71d11b0ca7.png)
+
+```R
+qqnorm(Group3$Length)
+qqline(Group3$Length)
+```
+
+![4ac](https://user-images.githubusercontent.com/64957624/170876886-fc9252ff-bc4e-4b70-b4f3-f0d2797fde58.png)
 
 </br>
 
 ### Poin B
 >Carilah atau periksalah homogeneity of variances-nya. Berapa nilai p yang didapatkan? Apa hipotesis dan kesimpulan yang dapat diambil?
 
+Untuk mendapatkan homogeneity of variances, digunakan sebuah fungsi yaitu fungsi `bartlett.test()` dengan parameter dari data yang telah dimasukkan sebelumnya.
+
+```R
+bartlett.test(Length ~ Group, data = dataoneway)
+```
+
+![4b](https://user-images.githubusercontent.com/64957624/170877622-efc5728f-e53a-4de0-a085-1acb8f00c21c.png)
 
 </br>
 
 ### Poin C
 >Untuk uji ANOVA (satu arah), buatlah model linier dengan panjang versus grup dan beri nama model tersebut model 1.
 
+Untuk membuat uji anova dan model liniernya, digunakan fungsi yaitu fungsi `lm()` dan `anova()` dengan parameter dari data yang telah dimasukkan sebelumnya.
+
+```R
+model1 = lm(Length ~ Group, data = dataoneway)
+anova(model1)
+```
+
+![4c](https://user-images.githubusercontent.com/64957624/170877742-5c0f86d2-2707-46be-bedf-a0905bbcbaa1.png)
 
 </br>
 
 ### Poin D
 >Dari hasil poin C, berapakah nilai p? Apa yang dapat Anda simpulkan dari H0?
+
 
 </br>
 
@@ -232,11 +298,29 @@ Jika diketahui dataset pada **https://intip.in/datasetprobstat1** dan H0 adalah 
 >Verifikasilah jawaban model 1 dengan Post-hoc test Tukey HSD, dari nilai p yang didapatkan apakah satu jenis kucing lebih panjang dari yang lain? Jelaskan.
 
 
+
+```R
+TukeyHSD(aov(model1))
+```
+
+![4e](https://user-images.githubusercontent.com/64957624/170877879-582c1df7-377f-48e4-baff-c4917c02ed51.png)
+
 </br>
 
 
 ### Poin F
 >Visualisasikan data dengan ggplot2
+
+Digunakan fungsi `ggplot()` untuk melakukan visualisasi data.
+
+```R
+install.packages("ggplot2")
+library("ggplot2")
+
+ggplot(dataoneway, aes(x = Group, y = Length)) + geom_boxplot(fill = "grey80", colour = "black") + scale_x_discrete() + xlab("Treatment Group") + ylab("Length (cm)")
+```
+
+![4f](https://user-images.githubusercontent.com/64957624/170877905-19ffda5c-13a4-4b05-be5a-513121fa36a5.png)
 
 </br>
 

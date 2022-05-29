@@ -85,10 +85,6 @@ qqnorm(Group3$Length)
 qqline(Group3$Length)
 
 ## Poin B
-install.packages("car")
-library(car)
-
-leveneTest(length ~ group, data = data)
 bartlett.test(Length ~ Group, data = dataoneway)
 
 ## Poin C
