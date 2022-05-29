@@ -335,10 +335,31 @@ Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui p
 ### Poin A
 >Buatlah plot sederhana untuk visualisasi data
 
+```R
+install.packages("multcompView")
+library(readr)
+library(ggplot2)
+library(multcompView)
+library(dplyr)
+```
+
+
+```R
+GTL <- read_csv("data_soal_5.csv")
+head(GTL)
+```
 
 ![5aa](https://user-images.githubusercontent.com/64957624/170877976-eaac5491-e4b5-4062-be1e-9dc1b3631d45.png)
 
+```R
+str(GTL)
+```
+
 ![5ab](https://user-images.githubusercontent.com/64957624/170878012-15dc056c-343e-4ff0-9af1-64fed63f0024.png)
+
+```R
+qplot(x = Temp, y = Light, geom = "point", data = GTL) + facet_grid(.~Glass, labeller = label_both)
+```
 
 ![5ac](https://user-images.githubusercontent.com/64957624/170878035-dcf7884a-d6aa-4715-960e-71505362bb3b.png)
 
@@ -347,7 +368,18 @@ Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui p
 ### Poin B
 >Lakukan uji ANOVA dua arah
 
+```R
+GTL$Glass <- as.factor(GTL$Glass)
+GTL$Temp_Factor <- as.factor(GTL$Temp)
+str(GTL)
+```
+
 ![5ba](https://user-images.githubusercontent.com/64957624/170878099-b8777847-dd91-4454-9ff0-08c8de4be64f.png)
+
+```R
+anova <- aov(Light ~ Glass*Temp_Factor, data = GTL)
+summary(anova)
+```
 
 ![5bb](https://user-images.githubusercontent.com/64957624/170878125-c178eb3e-04b3-40ff-8b62-5b95674dfd8f.png)
 
@@ -358,12 +390,24 @@ Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui p
 ### Poin C
 >Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi)
 
+```R
+data_summary <- group_by(GTL, Glass, Temp) %>%
+  summarise(mean = mean(Light), sd = sd(Light)) %>%
+  arrange(desc(mean))
+print(data_summary)
+```
+
 ![5c](https://user-images.githubusercontent.com/64957624/170878143-acdb24f5-fc7b-4e25-ba60-0e915f7f3612.png)
 
 </br>
 
 ### Poin D
 >Lakukan uji Tukey
+
+```R
+tukey <- TukeyHSD(anova)
+print(tukey)
+```
 
 ![5da](https://user-images.githubusercontent.com/64957624/170878200-7053be86-1ae8-4743-a908-204d63a34635.png)
 
@@ -375,7 +419,18 @@ Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui p
 Buatlah plot sederhana untuk visualisasi data
 >Gunakan compact letter display untuk menunjukkan perbedaan signifikan antara uji Anova dan uji Tukey
 
+```R
+tukey.cld <- multcompLetters4(anova, tukey)
+print(tukey.cld)
+```
+
 ![5ea](https://user-images.githubusercontent.com/64957624/170878296-3c210e50-74ac-4440-a7bf-c65357d884fd.png)
+
+```R
+cld <- as.data.frame.list(tukey.cld$`Glass:Temp_Factor`)
+data_summary$Tukey <- cld$Letters
+print(data_summary)
+```
 
 ![5eb](https://user-images.githubusercontent.com/64957624/170878313-838a1d73-743a-4f29-a168-628e14ebf188.png)
 

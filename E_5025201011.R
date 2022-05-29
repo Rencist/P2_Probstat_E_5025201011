@@ -92,16 +92,16 @@ model1 = lm(Length ~ Group, data = dataoneway)
 anova(model1)
 
 ## Poin D
-TukeyHSD(aov(model1))
+## Jawaban terlampir di laporan
 
 ## Poin E
+TukeyHSD(aov(model1))
+
+## Poin F
 install.packages("ggplot2")
 library("ggplot2")
 
 ggplot(dataoneway, aes(x = Group, y = Length)) + geom_boxplot(fill = "grey80", colour = "black") + scale_x_discrete() + xlab("Treatment Group") + ylab("Length (cm)")
-
-## Poin F
-## Jawaban terlampir di laporan
 
 
 
